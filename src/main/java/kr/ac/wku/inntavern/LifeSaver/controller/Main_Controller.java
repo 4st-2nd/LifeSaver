@@ -10,10 +10,4 @@ public class Main_Controller {
     public String showMain() {
         return "dist/index";
     }
-
-    @GetMapping("/login")
-    public String loginPage(){
-        return "dist/login";
-    }
-
 }
