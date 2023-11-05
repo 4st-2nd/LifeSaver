@@ -11,4 +11,9 @@ public class Main_Controller {
         return "dist/index";
     }
 
+    @GetMapping("/login")
+    public String loginPage(){
+        return "dist/login";
+    }
+
 }
