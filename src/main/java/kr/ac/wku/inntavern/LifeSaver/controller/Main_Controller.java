@@ -8,9 +8,9 @@ public class Main_Controller {
 
     @GetMapping("/")
     public String showMain() {
-        return "dist/index";
+        return "/index";
     }
 
-    @GetMapping("/analyze/map")
-    public String showMap() {return "dist/analyzingmap";}
+    @GetMapping("/map")
+    public String showMap() {return "/analyzingmap";}
 }
