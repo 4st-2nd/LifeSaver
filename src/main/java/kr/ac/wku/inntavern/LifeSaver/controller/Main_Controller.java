@@ -10,4 +10,7 @@ public class Main_Controller {
     public String showMain() {
         return "dist/index";
     }
+
+    @GetMapping("/analyze/map")
+    public String showMap() {return "dist/analyzingmap";}
 }
