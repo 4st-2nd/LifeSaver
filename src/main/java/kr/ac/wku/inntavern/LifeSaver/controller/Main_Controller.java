@@ -5,12 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class Main_Controller {
-
     @GetMapping("/")
-    public String showMain() {
-        return "/index";
+    public String gotoMain(){
+        return "index";
     }
-
     @GetMapping("/map")
     public String showMap() {return "/analyzingmap";}
 }

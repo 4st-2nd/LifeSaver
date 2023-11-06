@@ -6,8 +6,7 @@
     <link rel="shortcut icon" href="/dist/img/fav.png" type="image/x-icon">
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" type="text/css" href="/dist/css/style.css">
-    <title>Map</title>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <title>Welcome To Cleopatra</title>
 </head>
 <body class="bg-gray-100">
 
@@ -54,20 +53,9 @@
 
         <!-- right -->
         <div class="flex flex-row-reverse items-center">
-            <div class="relative md:static" sec:authorize="isAnonymous">
-                <a th:href="@{/user/signin}">
-                    <button class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
-                        Sign In
-                    </button>
-                </a>
-                <a th:href="@{/user/register}">
-                    <button class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
-                        Register
-                    </button>
-                </a>
-            </div>
+
             <!-- user -->
-            <div class="dropdown relative md:static" sec:authorize="isAuthenticated()">
+            <div class="dropdown relative md:static">
 
                 <button class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center">
                     <div class="w-8 h-8 overflow-hidden rounded-full">
@@ -75,10 +63,8 @@
                     </div>
 
                     <div class="ml-2 capitalize flex ">
-                        <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none"
-                            sec:authorize="isAnonymous"></h1>
-                        <h1 calss="text-sm text-gray-800 font-semibold m-0 p-0 leading-none"
-                            sec:authorize="isAuthenticated()" th:text="${user.username}"></h1>
+                        <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none" sec:authorize="isAnonymous"
+                            th:text="${username}"></h1>
                         <i class="fad fa-chevron-down ml-2 text-xs leading-none"></i>
                     </div>
                 </button>
@@ -422,7 +408,6 @@
                 email
             </a>
             <!-- end link -->
-
         </div>
         <!-- end sidebar content -->
 
@@ -431,12 +416,270 @@
 
     <!-- strat content -->
     <div class="bg-gray-100 flex-1 p-6 md:mt-16">
-        <div class="card mt-6">
-            <!-- body -->
-            <div class="card-body gap-6">
-                <div id="map" style="width:100%; height:500px;">
-                    .
+
+
+        <!-- General Report -->
+        <div class="grid grid-cols-4 gap-6 xl:grid-cols-1">
+
+
+            <!-- card -->
+            <div class="report-card">
+                <div class="card">
+                    <div class="card-body flex flex-col">
+
+                        <!-- top -->
+                        <div class="flex flex-row justify-between items-center">
+                            <div class="h6 text-indigo-700 fad fa-shopping-cart"></div>
+                            <span class="rounded-full text-white badge bg-teal-400 text-xs">
+                        12%
+                        <i class="fal fa-chevron-up ml-1"></i>
+                    </span>
+                        </div>
+                        <!-- end top -->
+
+                        <!-- bottom -->
+                        <div class="mt-8">
+                            <h1 class="h5 num-4"></h1>
+                            <p>items sales</p>
+                        </div>
+                        <!-- end bottom -->
+
+                    </div>
                 </div>
+                <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
+            </div>
+            <!-- end card -->
+
+
+            <!-- card -->
+            <div class="report-card">
+                <div class="card">
+                    <div class="card-body flex flex-col">
+
+                        <!-- top -->
+                        <div class="flex flex-row justify-between items-center">
+                            <div class="h6 text-red-700 fad fa-store"></div>
+                            <span class="rounded-full text-white badge bg-red-400 text-xs">
+                        6%
+                        <i class="fal fa-chevron-down ml-1"></i>
+                    </span>
+                        </div>
+                        <!-- end top -->
+
+                        <!-- bottom -->
+                        <div class="mt-8">
+                            <h1 class="h5 num-4"></h1>
+                            <p>new orders</p>
+                        </div>
+                        <!-- end bottom -->
+
+                    </div>
+                </div>
+                <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
+            </div>
+            <!-- end card -->
+
+
+            <!-- card -->
+            <div class="report-card">
+                <div class="card">
+                    <div class="card-body flex flex-col">
+
+                        <!-- top -->
+                        <div class="flex flex-row justify-between items-center">
+                            <div class="h6 text-yellow-600 fad fa-sitemap"></div>
+                            <span class="rounded-full text-white badge bg-teal-400 text-xs">
+                        72%
+                        <i class="fal fa-chevron-up ml-1"></i>
+                    </span>
+                        </div>
+                        <!-- end top -->
+
+                        <!-- bottom -->
+                        <div class="mt-8">
+                            <h1 class="h5 num-4"></h1>
+                            <p>total Products</p>
+                        </div>
+                        <!-- end bottom -->
+
+                    </div>
+                </div>
+                <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
+            </div>
+            <!-- end card -->
+
+
+            <!-- card -->
+            <div class="report-card">
+                <div class="card">
+                    <div class="card-body flex flex-col">
+
+                        <!-- top -->
+                        <div class="flex flex-row justify-between items-center">
+                            <div class="h6 text-green-700 fad fa-users"></div>
+                            <span class="rounded-full text-white badge bg-teal-400 text-xs">
+                        150%
+                        <i class="fal fa-chevron-up ml-1"></i>
+                    </span>
+                        </div>
+                        <!-- end top -->
+
+                        <!-- bottom -->
+                        <div class="mt-8">
+                            <h1 class="h5 num-4"></h1>
+                            <p>new Visitor</p>
+                        </div>
+                        <!-- end bottom -->
+
+                    </div>
+                </div>
+                <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
+            </div>
+            <!-- end card -->
+
+
+        </div>
+        <!-- End General Report -->
+
+        <!-- strat Analytics -->
+        <div class="mt-6 grid grid-cols-2 gap-6 xl:grid-cols-1">
+
+            <!-- update section -->
+            <div class="card bg-teal-400 border-teal-400 shadow-md text-white">
+                <div class="card-body flex flex-row">
+
+                    <!-- image -->
+                    <div class="img-wrapper w-40 h-40 flex justify-center items-center">
+                        <img src="/dist/img/happy.svg" alt="img title">
+                    </div>
+                    <!-- end image -->
+
+                    <!-- info -->
+                    <div class="py-2 ml-10">
+                        <h1 class="h6">Good Job, Mohamed!</h1>
+                        <p class="text-white text-xs">You've finished all of your tasks for this week.</p>
+
+                        <ul class="mt-4">
+                            <li class="text-sm font-light"><i class="fad fa-check-double mr-2 mb-2"></i> Finish
+                                Dashboard Design
+                            </li>
+                            <li class="text-sm font-light"><i class="fad fa-check-double mr-2 mb-2"></i> Fix Issue #74
+                            </li>
+                            <li class="text-sm font-light"><i class="fad fa-check-double mr-2"></i> Publish version
+                                1.0.6
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- end info -->
+
+                </div>
+            </div>
+            <!-- end update section -->
+
+            <!-- carts -->
+            <div class="flex flex-col">
+
+                <!-- alert -->
+                <div class="alert alert-dark mb-6">
+                    Hi! Wait A Minute . . . . . . Follow Me On Twitter
+                    <a class="ml-2" target="_blank" href="https://twitter.com/MohamedSaid__">@moesaid</a>
+                </div>
+                <!-- end alert -->
+
+                <!-- charts -->
+                <div class="grid grid-cols-2 gap-6 h-full">
+
+                    <div class="card">
+                        <div class="py-3 px-4 flex flex-row justify-between">
+                            <h1 class="h6">
+                                <span class="num-4"></span>k
+                                <p>page view</p>
+                            </h1>
+
+                            <div class="bg-teal-200 text-teal-700 border-teal-300 border w-10 h-10 rounded-full flex justify-center items-center">
+                                <i class="fad fa-eye"></i>
+                            </div>
+                        </div>
+                        <div class="analytics_1"></div>
+                    </div>
+
+                    <div class="card">
+                        <div class="py-3 px-4 flex flex-row justify-between">
+                            <h1 class="h6">
+                                <span class="num-2"></span>k
+                                <p>Unique Users</p>
+                            </h1>
+
+                            <div class="bg-indigo-200 text-indigo-700 border-indigo-300 border w-10 h-10 rounded-full flex justify-center items-center">
+                                <i class="fad fa-users-crown"></i>
+                            </div>
+                        </div>
+                        <div class="analytics_1"></div>
+                    </div>
+
+                </div>
+                <!-- charts    -->
+
+            </div>
+            <!-- end charts -->
+
+
+        </div>
+        <!-- end Analytics -->
+
+        <!-- Sales Overview -->
+        <div class="card mt-6">
+
+            <!-- header -->
+            <div class="card-header flex flex-row justify-between">
+                <h1 class="h6">Sales Overview</h1>
+
+                <div class="flex flex-row justify-center items-center">
+
+                    <a href="">
+                        <i class="fad fa-chevron-double-down mr-6"></i>
+                    </a>
+
+                    <a href="">
+                        <i class="fad fa-ellipsis-v"></i>
+                    </a>
+
+                </div>
+
+            </div>
+            <!-- end header -->
+
+            <!-- body -->
+            <div class="card-body grid grid-cols-2 gap-6 lg:grid-cols-1">
+
+                <div class="p-8">
+                    <h1 class="h2">5,337</h1>
+                    <p class="text-black font-medium">Sales this month</p>
+
+                    <div class="mt-20 mb-2 flex items-center">
+                        <div class="py-1 px-3 rounded bg-green-200 text-green-900 mr-3">
+                            <i class="fa fa-caret-up"></i>
+                        </div>
+                        <p class="text-black"><span class="num-2 text-green-400"></span><span class="text-green-400">% more sales</span>
+                            in comparison to last month.</p>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div class="py-1 px-3 rounded bg-red-200 text-red-900 mr-3">
+                            <i class="fa fa-caret-down"></i>
+                        </div>
+                        <p class="text-black"><span class="num-2 text-red-400"></span><span class="text-red-400">% revenue per sale</span>
+                            in comparison to last month.</p>
+                    </div>
+
+                    <a href="#" class="btn-shadow mt-6">view details</a>
+
+                </div>
+
+                <div class="">
+                    <div id="sealsOverview"></div>
+                </div>
+
             </div>
             <!-- end body -->
 
@@ -670,91 +913,9 @@
 <!-- end wrapper -->
 
 <!-- script -->
-<script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e84b0c73aea2cab493eea20db9ff263f&libraries=clusterer"></script>
-<script>
-    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-        center: new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
-        level: 11 // 지도의 확대 레벨
-    });
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="/dist/js/scripts.js"></script>
+<!-- end script -->
 
-    // 마커 클러스터러를 생성합니다
-    var clusterer = new kakao.maps.MarkerClusterer({
-        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
-        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-        minLevel: 10, // 클러스터 할 최소 지도 레벨
-        calculator: [10, 30, 50], // 클러스터의 크기 구분 값, 각 사이값마다 설정된 text나 style이 적용된다
-        texts: getTexts, // texts는 ['삐약', '꼬꼬', '꼬끼오', '치멘'] 이렇게 배열로도 설정할 수 있다
-        styles: [{ // calculator 각 사이 값 마다 적용될 스타일을 지정한다
-            width: '30px', height: '30px',
-            background: 'rgba(51, 204, 255, .8)',
-            borderRadius: '15px',
-            color: '#000',
-            textAlign: 'center',
-            fontWeight: 'bold',
-            lineHeight: '31px'
-        },
-            {
-                width: '40px', height: '40px',
-                background: 'rgba(255, 153, 0, .8)',
-                borderRadius: '20px',
-                color: '#000',
-                textAlign: 'center',
-                fontWeight: 'bold',
-                lineHeight: '41px'
-            },
-            {
-                width: '50px', height: '50px',
-                background: 'rgba(255, 51, 204, .8)',
-                borderRadius: '25px',
-                color: '#000',
-                textAlign: 'center',
-                fontWeight: 'bold',
-                lineHeight: '51px'
-            },
-            {
-                width: '60px', height: '60px',
-                background: 'rgba(255, 80, 80, .8)',
-                borderRadius: '30px',
-                color: '#000',
-                textAlign: 'center',
-                fontWeight: 'bold',
-                lineHeight: '61px'
-            }
-        ]
-    });
-
-    // 클러스터 내부에 삽입할 문자열 생성 함수입니다
-    function getTexts(count) {
-
-        // 한 클러스터 객체가 포함하는 마커의 개수에 따라 다른 텍스트 값을 표시합니다
-        if (count < 10) {
-            return '저위험';
-        } else if (count < 30) {
-            return '중위험';
-        } else if (count < 50) {
-            return '고위험';
-        } else {
-            return '접근금지';
-        }
-    }
-
-    // 데이터를 가져오기 위해 jQuery를 사용합니다
-    // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-    $.get("dist/locationInfo.json", function (data) {
-        // 데이터에서 좌표 값을 가지고 마커를 표시합니다
-        // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-        var markers = $(data.positions).map(function (i, position) {
-            return new kakao.maps.Marker({
-                position: new kakao.maps.LatLng(position.lat, position.lng)
-            });
-        });
-
-        // 클러스터러에 마커들을 추가합니다
-        clusterer.addMarkers(markers);
-    });
-
-
-</script>
 </body>
 </html>

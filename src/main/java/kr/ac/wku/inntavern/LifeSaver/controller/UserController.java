@@ -50,9 +50,11 @@ public class UserController {
             return "user_register";
         }
 
+        /*
         userService.create(userCreateForm.getUsername(),
                 userCreateForm.getEmail(), userCreateForm.getPassword());
+         */
 
-        return "redirect:/";
+        return "redirect:/user/signin";
     }
 }
