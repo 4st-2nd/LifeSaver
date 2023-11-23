@@ -34,7 +34,7 @@ public class UserController {
 
         if (!userCreateForm.getPassword().equals(userCreateForm.getConfirm_password())) {
             bindingResult.rejectValue("confirm_password", "passwordInCorrect",
-                    "2개의 패스워드가 일치하지 않습니다.");
+                    "패스워드가 일치하지 않습니다.");
             return "user_register";
         }
 
