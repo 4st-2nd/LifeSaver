@@ -57,4 +57,10 @@ public class UserController {
 
         return "redirect:/user/signin";
     }
+
+    @GetMapping("/editInfo")
+    public String EditInfo(){
+        return "user_edit_info";
+    }
+
 }

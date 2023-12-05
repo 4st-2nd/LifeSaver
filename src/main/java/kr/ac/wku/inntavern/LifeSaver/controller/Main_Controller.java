@@ -10,5 +10,13 @@ public class Main_Controller {
         return "index";
     }
     @GetMapping("/map")
-    public String showMap() {return "/analyzingmap";}
+    public String showMap() {return "analyzing_map";}
+
+    @GetMapping("/type")
+    public String showType() {return "analyzing_type";}
+
+    @GetMapping("/home")
+    public String selectImageList() {
+        return "analyzing_user";
+    }
 }

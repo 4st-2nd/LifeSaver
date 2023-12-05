@@ -30,24 +30,24 @@
             <form class="flex flex-col pt-3 md:pt-8" th:action="@{/user/signin}" method="post">
                 <div th:if="${param.error}">
                     <div class="bg-red-500 text-white p-2 mt-2 mb-2 rounded">
-                        Please check your ID or Password.
+                        아이디 혹은 비밀번호를 확인해주세요.
                     </div>
                 </div>
-                <p class="text-center text-3xl">Sign in</p>
+                <p class="text-center text-3xl">로그인</p>
 
                 <div class="flex flex-col pt-4">
-                    <label for="username" class="text-lg">ID</label>
-                    <input type="text" name="username" id="username" placeholder="User ID" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                    <label for="username" class="text-lg">아이디</label>
+                    <input type="text" name="username" id="username" placeholder="아이디" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
 
                 <div class="flex flex-col pt-4">
-                    <label for="password" class="text-lg">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                    <label for="password" class="text-lg">비밀번호</label>
+                    <input type="password" name="password" id="password" placeholder="비밀번호" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                <input type="submit" value="Sign In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
+                <input type="submit" value="로그인" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
             </form>
             <div class="text-center pt-12 pb-12">
-                <p>You don't have Account? <a th:href="@{/user/register}" class="underline font-semibold">Register Here</a></p>
+                <p>계정이 없습니까? <a th:href="@{/user/register}" class="underline font-semibold">여기서 회원가입하세요.</a></p>
             </div>
         </div>
 
