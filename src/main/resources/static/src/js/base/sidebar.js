@@ -9,7 +9,7 @@ var btn     = document.getElementById('sliderBtn'),
             sideBar.classList.replace('md:-ml-64' , 'md:ml-0');
             sideBar.classList.remove('md:slideOutLeft');
             sideBar.classList.add('md:slideInLeft');
-        };
+        }
     });
 
     // hide sideBar    
@@ -33,6 +33,6 @@ var btn     = document.getElementById('sliderBtn'),
                     
             _class(); 
             animate();
-        };
+        }
     });
 // end with sidebar

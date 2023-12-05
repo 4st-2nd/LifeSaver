@@ -27,6 +27,6 @@ navbarToggle.addEventListener('click' , function(){
         };
 
         animate();        
-    };
+    }
     
 });

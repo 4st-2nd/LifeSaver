@@ -6,6 +6,7 @@ import kr.ac.wku.inntavern.LifeSaver.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -37,4 +38,5 @@ public class UserSecurityService implements UserDetailsService {
 
         return new User(user.getUsername(), user.getPassword(), authorities);
     }
+
 }

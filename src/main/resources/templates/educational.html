@@ -6,24 +6,7 @@
     <link rel="shortcut icon" href="/dist/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" type="text/css" href="/dist/css/style.css">
-    <title>Location Analyzer || LifeSaver : We work for workers</title>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-    <style>
-        .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-        .wrap * {padding: 0;margin: 0;}
-        .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-        .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-        .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-        .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-        .info .close:hover {cursor: pointer;}
-        .info .body {position: relative;overflow: hidden;   }
-        .info .desc {position: relative; margin: 13px 0 0 90px;height: 75px; word-break:normal; text-overflow: ellipsis;}
-        .desc .ellipsis {overflow: hidden; text-overflow: ellipsis;white-space: nowrap;}
-        .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-        .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-        .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-        .info .link {color: #5085BB;}
-    </style>
+    <title>LifeSaver : We work for workers</title>
 </head>
 <body class="bg-gray-100">
 
@@ -70,6 +53,7 @@
 
         <!-- right -->
         <div class="flex flex-row-reverse items-center">
+            <!-- user -->
             <div class="relative md:static" sec:authorize="isAnonymous">
                 <a th:href="@{/user/signin}">
                     <button class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
@@ -82,7 +66,6 @@
                     </button>
                 </a>
             </div>
-            <!-- user -->
             <div class="dropdown relative md:static" sec:authorize="isAuthenticated()">
 
                 <button class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center">
@@ -438,323 +421,167 @@
                 email
             </a>
             <!-- end link -->
-
         </div>
         <!-- end sidebar content -->
 
     </div>
     <!-- end sidbar -->
 
-    <!-- strat content -->
-    <div class="bg-gray-100 flex-1 p-6 md:mt-16">
-        <div class="card mt-6">
-            <!-- body -->
-            <div class="card-body gap-6">
-                <div id="map" style="width:100%; height:500px;">
-                    .
-                </div>
-            </div>
-            <!-- end body -->
+  <!-- strat content -->
+  <div class="bg-gray-100 flex-1 p-6 md:mt-16 grid grid-cols-8"> 
+    
+    <div class="col-span-2 bg-white border rounded p-6 mr-8">
 
-        </div>
-        <!-- end Sales Overview -->
+    <a href="#" class="btn-bs-dark uppercase tracking-wider">
+        <i class="fad fa-layer-plus mr-2"></i>
+        Compose
+    </a>
+    <hr class="my-6">
 
-        <!-- start numbers -->
-        <div class="grid grid-cols-5 gap-6 xl:grid-cols-2">
+    <ul>
+        <li class="my-5 mt-0">
+            <a class="btn-indigo text-left" href="#">
+                <i class="text-xs fad fa-inbox mr-1"></i>
+                inbox
+            </a>
+        </li>
+        
 
-            <!-- card -->
-            <div class="card mt-6">
-                <div class="card-body flex items-center">
-
-                    <div class="px-3 py-2 rounded bg-indigo-600 text-white mr-3">
-                        <i class="fad fa-wallet"></i>
-                    </div>
-
-                    <div class="flex flex-col">
-                        <h1 class="font-semibold"><span class="num-2"></span> Sales</h1>
-                        <p class="text-xs"><span class="num-2"></span> payments</p>
-                    </div>
-
-                </div>
-            </div>
-            <!-- end card -->
-
-            <!-- card -->
-            <div class="card mt-6">
-                <div class="card-body flex items-center">
-
-                    <div class="px-3 py-2 rounded bg-green-600 text-white mr-3">
-                        <i class="fad fa-shopping-cart"></i>
-                    </div>
-
-                    <div class="flex flex-col">
-                        <h1 class="font-semibold"><span class="num-2"></span> Orders</h1>
-                        <p class="text-xs"><span class="num-2"></span> items</p>
-                    </div>
-
-                </div>
-            </div>
-            <!-- end card -->
-
-            <!-- card -->
-            <div class="card mt-6 xl:mt-1">
-                <div class="card-body flex items-center">
-
-                    <div class="px-3 py-2 rounded bg-yellow-600 text-white mr-3">
-                        <i class="fad fa-blog"></i>
-                    </div>
-
-                    <div class="flex flex-col">
-                        <h1 class="font-semibold"><span class="num-2"></span> posts</h1>
-                        <p class="text-xs"><span class="num-2"></span> active</p>
-                    </div>
-
-                </div>
-            </div>
-            <!-- end card -->
-
-            <!-- card -->
-            <div class="card mt-6 xl:mt-1">
-                <div class="card-body flex items-center">
-
-                    <div class="px-3 py-2 rounded bg-red-600 text-white mr-3">
-                        <i class="fad fa-comments"></i>
-                    </div>
-
-                    <div class="flex flex-col">
-                        <h1 class="font-semibold"><span class="num-2"></span> comments</h1>
-                        <p class="text-xs"><span class="num-2"></span> approved</p>
-                    </div>
-
-                </div>
-            </div>
-            <!-- end card -->
-
-            <!-- card -->
-            <div class="card mt-6 xl:mt-1 xl:col-span-2">
-                <div class="card-body flex items-center">
-
-                    <div class="px-3 py-2 rounded bg-pink-600 text-white mr-3">
-                        <i class="fad fa-user"></i>
-                    </div>
-
-                    <div class="flex flex-col">
-                        <h1 class="font-semibold"><span class="num-2"></span> memebrs</h1>
-                        <p class="text-xs"><span class="num-2"></span> online</p>
-                    </div>
-
-                </div>
-            </div>
-            <!-- end card -->
-
-        </div>
-        <!-- end nmbers -->
-
-        <!-- start quick Info -->
-        <div class="grid grid-cols-3 gap-6 mt-6 xl:grid-cols-1">
+        <li>
+            <a class="btn text-left text-gray-800 bg-white hover:bg-gray-100 hover:text-gray-900" href="#">
+                <i class="text-xs fad fa-paper-plane mr-1"></i>
+                sent
+            </a>
+        </li>
 
 
-            <!-- Browser Stats -->
-            <div class="card">
-                <div class="card-header">Browser Stats</div>
+        <li>
+            <a class="btn text-left text-gray-800 bg-white hover:bg-gray-100 hover:text-gray-900" href="#">
+                <i class="text-xs fad fa-star mr-1"></i>
+                Marked
+            </a>
+        </li>
+        
 
-                <!-- brawser -->
-                <div class="p-6 flex flex-row justify-between items-center text-gray-600 border-b">
-                    <div class="flex items-center">
-                        <i class="fab fa-chrome mr-4"></i>
-                        <h1>google chrome</h1>
-                    </div>
-                    <div>
-                        <span class="num-2"></span>%
-                    </div>
-                </div>
-                <!-- end brawser -->
+        <li>
+            <a class="btn text-left text-gray-800 bg-white hover:bg-gray-100 hover:text-gray-900" href="#">
+                <i class="text-xs fad fa-inbox-in mr-1"></i>
+                draft
+            </a>
+        </li>
+        
 
-                <!-- brawser -->
-                <div class="p-6 flex flex-row justify-between items-center text-gray-600 border-b">
-                    <div class="flex items-center">
-                        <i class="fab fa-firefox mr-4"></i>
-                        <h1>firefox</h1>
-                    </div>
-                    <div>
-                        <span class="num-2"></span>%
-                    </div>
-                </div>
-                <!-- end brawser -->
+        <li>
+            <a class="btn text-left text-gray-800 bg-white hover:bg-gray-100 hover:text-gray-900" href="#">
+                <i class="text-xs fad fa-inbox-out mr-1"></i>
+                sent
+            </a>
+        </li>
+        
 
-                <!-- brawser -->
-                <div class="p-6 flex flex-row justify-between items-center text-gray-600 border-b">
-                    <div class="flex items-center">
-                        <i class="fab fa-internet-explorer mr-4"></i>
-                        <h1>internet explorer</h1>
-                    </div>
-                    <div>
-                        <span class="num-2"></span>%
-                    </div>
-                </div>
-                <!-- end brawser -->
+        <li>
+            <a class="btn text-left text-gray-800 bg-white hover:bg-gray-100 hover:text-gray-900" href="#">
+                <i class="text-xs fad fa-trash mr-1"></i>
+                trash
+            </a>
+        </li>
 
-                <!-- brawser -->
-                <div class="p-6 flex flex-row justify-between items-center text-gray-600 border-b-0">
-                    <div class="flex items-center">
-                        <i class="fab fa-safari mr-4"></i>
-                        <h1>safari</h1>
-                    </div>
-                    <div>
-                        <span class="num-2"></span>%
-                    </div>
-                </div>
-                <!-- end brawser -->
+        <!-- seprator -->
+        <hr class="my-10">
 
-            </div>
-            <!-- end Browser Stats -->
-
-            <!-- Start Recent Sales -->
-            <div class="card col-span-2 xl:col-span-1">
-                <div class="card-header">Recent Sales</div>
-
-                <table class="table-auto w-full text-left">
-                    <thead>
-                    <tr>
-                        <th class="px-4 py-2 border-r"></th>
-                        <th class="px-4 py-2 border-r">product</th>
-                        <th class="px-4 py-2 border-r">price</th>
-                        <th class="px-4 py-2">date</th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-gray-600">
-
-                    <tr>
-                        <td class="border border-l-0 px-4 py-2 text-center text-green-500"><i class="fad fa-circle"></i>
-                        </td>
-                        <td class="border border-l-0 px-4 py-2">Lightning to USB-C Adapter Lightning.</td>
-                        <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                        <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span> minutes ago</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-l-0 px-4 py-2 text-center text-yellow-500"><i
-                                class="fad fa-circle"></i></td>
-                        <td class="border border-l-0 px-4 py-2">Apple iPhone 8.</td>
-                        <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                        <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span> minutes ago</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-l-0 px-4 py-2 text-center text-green-500"><i class="fad fa-circle"></i>
-                        </td>
-                        <td class="border border-l-0 px-4 py-2">Apple MacBook Pro.</td>
-                        <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                        <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span> minutes ago</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-l-0 px-4 py-2 text-center text-red-500"><i class="fad fa-circle"></i>
-                        </td>
-                        <td class="border border-l-0 px-4 py-2">Samsung Galaxy S9.</td>
-                        <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                        <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span> minutes ago</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-l-0 px-4 py-2 text-center text-yellow-500"><i
-                                class="fad fa-circle"></i></td>
-                        <td class="border border-l-0 px-4 py-2">Samsung Galaxy S8 256GB.</td>
-                        <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                        <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span> minutes ago</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-l-0 border-b-0 px-4 py-2 text-center text-green-500"><i
-                                class="fad fa-circle"></i></td>
-                        <td class="border border-l-0 border-b-0 px-4 py-2">apple watch.</td>
-                        <td class="border border-l-0 border-b-0 px-4 py-2">$<span class="num-2"></span></td>
-                        <td class="border border-l-0 border-b-0 border-r-0 px-4 py-2"><span class="num-2"></span>
-                            minutes ago
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>
-            </div>
-            <!-- End Recent Sales -->
+        <li>
+            <a class="btn text-left text-gray-800 bg-white hover:bg-gray-100 hover:text-gray-900" href="#">
+                <i class="text-indigo-700 fad fa-dot-circle mr-1"></i>
+                Custom Work
+            </a>
+        </li>
 
 
-        </div>
-        <!-- end quick Info -->
+        <li>
+            <a class="btn text-left text-gray-800 bg-white hover:bg-gray-100 hover:text-gray-900" href="#">
+                <i class="text-gray-700 fad fa-dot-circle mr-1"></i>
+                Important 
+            </a>
+        </li>
 
 
+        <li>
+            <a class="btn text-left text-gray-800 bg-white hover:bg-gray-100 hover:text-gray-900" href="#">
+                <i class="text-green-700 fad fa-dot-circle mr-1"></i>
+                work
+            </a>
+        </li>
+
+
+        <li>
+            <a class="btn text-left text-gray-800 bg-white hover:bg-gray-100 hover:text-gray-900" href="#">
+                <i class="text-yellow-700 fad fa-dot-circle mr-1"></i>
+                design
+            </a>
+        </li>
+
+
+        <li>
+            <a class="btn text-left text-gray-800 bg-white hover:bg-gray-100 hover:text-gray-900" href="#">
+                <i class="text-red-700 fad fa-dot-circle mr-1"></i>
+                laravel
+            </a>
+        </li>
+
+        <li>
+            <a class="btn text-left text-gray-800 bg-white hover:bg-gray-100 hover:text-gray-900" href="#">
+                <i class="text-teal-800 fad fa-dot-circle mr-1"></i>
+                add new label
+            </a>
+        </li>       
+        
+    </ul>
+
+</div>
+    <div class="col-span-6 card flex flex-col">
+
+    <div class="px-3 border-b">
+        <form action="" class="flex">
+            <input class="p-3 flex-1" type="text" placeholder="search">
+            <button type="submit" class="p-3" th>
+                <i class="fad fa-search"></i>
+            </button>
+        </form>
     </div>
-    <!-- end content -->
+
+    <div class="flex-1 flex flex-col">
+        <div  th:each="posts : ${postsList}">
+            <!-- message -->
+            <a th:href="@{|/edu/posts/${posts.id}|}">
+                <div class="flex items-center shadow-xs transition-all duration-300 ease-in-out p-5 hover:shadow-md" th:if="${posts != null}">
+                    <div class="w-10 h-10 overflow-hidden rounded-md">
+                        <img class="img-responsive" src="../static/dist/img/user1.jpg" alt="">
+                    </div>
+                    <h1 class="ml-3" th:text="${posts.title}"></h1>
+                    <p class="ml-6 flex-1 text-xs" th:text="${posts.contents}"></p>
+                    <p class="font-bold text-gray-900" th:text="${posts.createTime}"></p>
+                </div>
+            </a>
+            <!-- message -->
+        </div>
+    </div>
+
+    <div class="card-footer flex justify-between">
+        <p>4.41 GB (25%) of 17 GB used Manage</p>
+        <p>Last account activity: 36 minutes ago</p>
+    </div>
+</div>
+
+  </div>
+  <!-- end content -->
 
 </div>
 <!-- end wrapper -->
 
 <!-- script -->
-<script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e84b0c73aea2cab493eea20db9ff263f&libraries=clusterer"></script>
-<script>
-    var mapContainer = document.getElementById('map');
-    var mapOption = {
-        center: new kakao.maps.LatLng(37.27943075229118, 127.01763998406159),
-        level: 3
-    };
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="../static/dist/js/scripts.js"></script>
+<!-- end script -->
 
-    var map = new kakao.maps.Map(mapContainer, mapOption);
-
-    var clusterer = new kakao.maps.MarkerClusterer({
-        map: map,
-        averageCenter: true,
-        minLevel: 10
-    });
-
-    $.get("dist/locationInfo.json", function (data) {
-        var markers = data.positions.map(function (position) {
-            var marker =  new kakao.maps.Marker({
-                title : position.name+","+position.reason,
-                position: new kakao.maps.LatLng(position.lat, position.lng),
-                clickable: true
-            });
-
-            addMarkerEvent(marker, map);
-
-            return marker;
-        });
-
-        clusterer.addMarkers(markers);
-    });
-
-    function addMarkerEvent(marker, map) {
-        const word = marker.getTitle().split(',');
-        var content = '<div class="wrap">' +
-            '    <div class="info">' +
-            '        <div class="title">' + word[0] +
-            '            <div class="close" title="닫기"></div>' +
-            '        </div>' +
-            '        <div class="body">' +
-            '            <div class="img">' +
-            '                <img src="/dist/img/logo.png" width="73" height="70">' +
-            '           </div>' +
-            '            <div class="desc">' +
-            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">'+ word[1] +'</a></div>' +
-            '            </div>' +
-            '        </div>' +
-            '    </div>' +
-            '</div>';
-
-        var overlay = new kakao.maps.CustomOverlay({
-            content: content,
-            map: null,
-            position: marker.getPosition()
-        });
-
-        kakao.maps.event.addListener(marker, 'click', function() {
-            overlay.setMap(map);
-        });
-
-        $(overlay.a).find('.close').click(function() {
-            overlay.setMap(null);
-        });
-    }
-
-
-
-
-</script>
 </body>
 </html>
