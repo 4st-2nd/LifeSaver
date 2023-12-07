@@ -4,6 +4,7 @@ import kr.ac.wku.inntavern.LifeSaver.UserRole;
 import kr.ac.wku.inntavern.LifeSaver.entity.user.LifeSaverUser;
 import kr.ac.wku.inntavern.LifeSaver.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,7 +25,7 @@ public class UserSecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-        Optional<LifeSaverUser> _user = this.userRepository.findByusername(username);
+        Optional<LifeSaverUser> _user = this.userRepository.findByUsername(username);
         if(_user.isEmpty()){
             throw new UsernameNotFoundException("Can't find user");
         }
@@ -39,4 +40,14 @@ public class UserSecurityService implements UserDetailsService {
         return new User(user.getUsername(), user.getPassword(), authorities);
     }
 
+    public UserDetails getCurrentUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth != null){
+            Object principal = auth.getPrincipal();
+            if(principal instanceof UserDetails){
+                return (UserDetails) principal;
+            }
+        }
+        return null;
+    }
 }

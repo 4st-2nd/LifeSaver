@@ -1,10 +1,12 @@
 package kr.ac.wku.inntavern.LifeSaver.controller;
 
+import ch.qos.logback.core.model.Model;
 import jakarta.validation.Valid;
 import kr.ac.wku.inntavern.LifeSaver.UserCreateForm;
 import kr.ac.wku.inntavern.LifeSaver.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
+    @GetMapping("/editInfo")
+    public String editInfo(Model model) {
+        return "user_edit_info";
+    }
+
 
     @GetMapping("/signin")
     public String signin(){
@@ -56,11 +63,6 @@ public class UserController {
          */
 
         return "redirect:/user/signin";
-    }
-
-    @GetMapping("/editInfo")
-    public String EditInfo(){
-        return "user_edit_info";
     }
 
 }
