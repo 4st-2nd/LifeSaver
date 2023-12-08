@@ -7,48 +7,200 @@
       layout:fragment="Content"
 >
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-</head>
-<div class="bg-gray-100 flex-1 p-6 md:mt-16">
-    <div class="card">
-        <!-- body -->
-        <div class="card-body gap-6">
-            <div id="desasterChart">
+    <title> 혼자서 다했다! </title>
+    <th:block layout:fragment="script">
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    </th:block>
 
+</head>
+<div class="grid grid-cols-3 grid-flow-col p-6 gap-4 flex-auto">
+    <div class="card col-span-2 row-span-1">
+        <div class="card-header">
+            <strong>산업 유형에 따른 사고</strong>
+        </div>
+        <div class="card-body">
+            <div id="desasterChart">
             </div>
         </div>
-        <!-- end body -->
+    </div>
+    <div class="card col-span-2 row-span-1 bg-blue-100">
+        <div class="card-header">
+            <strong>산업 유형에 따른 사고 예방법 교육자료</strong>
+        </div>
+        <div class="card-body">
 
+        </div>
+    </div>
+    <div class="row-span-2 bg-blue-400">
+        <div id="SquareChart">
+        </div>
     </div>
 </div>
 <th:block layout:fragment="script">
     <script>
-        var data = {
-            "lat": 36.33884892276137,
-            "lng": 127.393666019664,
-            "date" : "2020.6.1",
-            "name" : "(주)고려노벨화약",
-            "location": "경남 고성군 마암면 당항만로 190(삼락리)",
-            "reason" : "산업용 전기 뇌관 제조공정 내 자동화설비에서 저항치 불량이 발생한 뇌관들에 대해 휴대용 저항계를 사용하여 수동으로 저항을 재측정하는 작업과정에서 폭발사고 발생 ",
-            "die" : 0,
-            "injury" : 4
-        };
+        let countInjury = new Array(100).fill(0);
+        let countDie = new Array(100).fill(0);
+        let categoryArr = new Array();
+        let data;
+        window.onload = function getDataAndRender(){
+            $.get("dist/locationInfo.json", function(data) {
+                let positions = data.positions;
+                for (let item of positions) {
+                    categoryArr.push(item.industrytype)
+                    countDie[item.industrytype] += item.die;
+                    countInjury[item.industrytype] += item.injury;
+                }
+                let temp_categoryArr = new Set(categoryArr);
+                categoryArr = [...temp_categoryArr];
+                displayChart();
+                displaySquareChart()
+            }, "json").fail(function() {
+                console.log("An error has occurred.");
+            });
+        }
+        function displayChart(){
+            let options = {
+                chart: {
+                    type: 'bar',
+                    stacked:true,
+                    toolbar : {
+                        show:true
+                    },
+                    zoom : {
+                        enabled: true
+                    }
+                },
+                series: [{
+                    name : '사망',
+                    data: [countDie[35], countDie[41]]
+                }, {
+                    name : '부상',
+                    data : [countInjury[35], countInjury[41]]
+                }],
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        dataLabels: {
+                            total: {
+                                enabled: true,
+                                style: {
+                                    fontSize: '13px',
+                                    fontWeight: 900
+                                }
+                            }
+                        }
+                    },
+                },
+                xaxis: {
+                    categories: categoryArr
+                },
+                legend: {
+                    position: 'right',
+                    offsetY: 40
+                },
+                fill: {
+                    opacity: 1
+                }
+            };
+            let desasterChart = new ApexCharts(document.querySelector("#desasterChart"), options);
+            desasterChart.render();
+        }
+        function displaySquareChart(){
+            var options = {
+                series: [
+                    {
+                        data: [
+                            {
+                                x: 'New Delhi',
+                                y: 218
+                            },
+                            {
+                                x: 'Kolkata',
+                                y: 149
+                            },
+                            {
+                                x: 'Mumbai',
+                                y: 184
+                            },
+                            {
+                                x: 'Ahmedabad',
+                                y: 55
+                            },
+                            {
+                                x: 'Bangaluru',
+                                y: 84
+                            },
+                            {
+                                x: 'Pune',
+                                y: 31
+                            },
+                            {
+                                x: 'Chennai',
+                                y: 70
+                            },
+                            {
+                                x: 'Jaipur',
+                                y: 30
+                            },
+                            {
+                                x: 'Surat',
+                                y: 44
+                            },
+                            {
+                                x: 'Hyderabad',
+                                y: 68
+                            },
+                            {
+                                x: 'Lucknow',
+                                y: 28
+                            },
+                            {
+                                x: 'Indore',
+                                y: 19
+                            },
+                            {
+                                x: 'Kanpur',
+                                y: 29
+                            }
+                        ]
+                    }
+                ],
+                legend: {
+                    show: false
+                },
+                chart: {
+                    type: 'treemap',
+                    height: '100%'
+                },
+                title: {
+                    align: 'center'
+                },
+                colors: [
+                    '#3B93A5',
+                    '#F7B844',
+                    '#ADD8C7',
+                    '#EC3C65',
+                    '#CDD7B6',
+                    '#C1F666',
+                    '#D43F97',
+                    '#1E5D8C',
+                    '#421243',
+                    '#7F94B0',
+                    '#EF6537',
+                    '#C0ADDB'
+                ],
+                plotOptions: {
+                    treemap: {
+                        distributed: true,
+                        enableShades: false
+                    }
+                }
+            };
 
-        var options = {
-            chart: {
-                type: 'bar'
-            },
-            series: [{
-                name: '사고',
-                data: [data.die, data.injury]
-            }],
-            xaxis: {
-                categories: ['사망', '부상']
-            }
-        };
-
-        var desasterChart = new ApexCharts(document.querySelector("#desasterChart"), options);
-        desasterChart.render();
+            var squarechart = new ApexCharts(document.querySelector("#SquareChart"), options);
+            squarechart.render();
+        }
     </script>
 </th:block>
 </html>

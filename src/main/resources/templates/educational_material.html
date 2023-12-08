@@ -9,6 +9,38 @@
 >
   <!-- strat content -->
   <div class="bg-gray-100 flex-1 p-6 md:mt-16">
+    <!--
+    <div class="flex-1 flex-col justify-center p-3">
+        <div class="flex items-center shadow-xs transition-all duration-300 ease-in-out p-5 hover:shadow-md" th:if="${posts != null}">
+          <div class="w-100 h-100 overflow-hidden rounded-md">
+            <img class="img-responsive" src="/dist/img/logo.png" alt="">
+          </div>
+          <div class="">
+            <h1 class="ml-3" th:text="${posts.title}"></h1>
+            <p class="ml-6 flex-1 text-xs" th:text="${posts.contents}"></p>
+            <p class="font-bold text-gray-900 overflow-hidden" th:text="${posts.createTime}"></p>
+          </div>
+        </div>
+    </div>
+    -->
+    <div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+      <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
+        <div class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+          <div class="lg:pr-4">
+            <div class="lg:max-w-lg" th:if="${posts != null}">
+              <p class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</p>
+              <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">A better workflow</h1>
+              <p class="mt-6 text-xl leading-8 text-gray-700">Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas.</p>
+              <div class="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+                <img class="w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]" src="/dist/img/contents.png" alt="">
+              </div>
+              <p class="mt-6 text-xl leading-8 text-gray-700">Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas.</p>
+              <p class="mt-6 text-xl leading-8 text-gray-700">Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- end content -->
 
@@ -18,8 +50,9 @@
   
 
 <!-- script -->
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="../static/dist/js/scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="../static/dist/js/scripts.js"></script>
 <!-- end script -->
 
 </body>
