@@ -29,6 +29,35 @@
             <strong>산업 유형에 따른 사고 예방법 교육자료</strong>
         </div>
         <div class="card-body">
+            <ul class="grid w-full gap-6 md:grid-cols-3">
+                <li>
+                    <input type="checkbox" id="react-option" value="" class="hidden peer" required="">
+                    <label for="react-option" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <div class="block">
+                            <div class="w-full text-lg font-semibold">교육자료 #1</div>
+                            <div class="w-full text-sm">A JavaScript library for building user interfaces.</div>
+                        </div>
+                    </label>
+                </li>
+                <li>
+                    <input type="checkbox" id="react-option" value="" class="hidden peer" required="">
+                    <label for="react-option" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <div class="block">
+                            <div class="w-full text-lg font-semibold">교육자료 #1</div>
+                            <div class="w-full text-sm">A JavaScript library for building user interfaces.</div>
+                        </div>
+                    </label>
+                </li>
+                <li>
+                    <input type="checkbox" id="react-option" value="" class="hidden peer" required="">
+                    <label for="react-option" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <div class="block">
+                            <div class="w-full text-lg font-semibold">교육자료 #1</div>
+                            <div class="w-full text-sm">A JavaScript library for building user interfaces.</div>
+                        </div>
+                    </label>
+                </li>
+            </ul>
 
         </div>
     </div>
@@ -39,6 +68,7 @@
 </div>
 <th:block layout:fragment="script">
     <script>
+        let SquareChartArr = new Array(0);
         let countInjury = new Array(100).fill(0);
         let countDie = new Array(100).fill(0);
         let categoryArr = new Array();
@@ -51,8 +81,15 @@
                     countDie[item.industrytype] += item.die;
                     countInjury[item.industrytype] += item.injury;
                 }
+
+
                 let temp_categoryArr = new Set(categoryArr);
                 categoryArr = [...temp_categoryArr];
+
+                for(let category_item of temp_categoryArr){
+                    SquareChartArr.push({x:category_item,y:countDie[category_item]+countInjury[category_item]})
+                }
+
                 displayChart();
                 displaySquareChart()
             }, "json").fail(function() {
@@ -106,64 +143,13 @@
             let desasterChart = new ApexCharts(document.querySelector("#desasterChart"), options);
             desasterChart.render();
         }
+
+
         function displaySquareChart(){
             var options = {
                 series: [
                     {
-                        data: [
-                            {
-                                x: 'New Delhi',
-                                y: 218
-                            },
-                            {
-                                x: 'Kolkata',
-                                y: 149
-                            },
-                            {
-                                x: 'Mumbai',
-                                y: 184
-                            },
-                            {
-                                x: 'Ahmedabad',
-                                y: 55
-                            },
-                            {
-                                x: 'Bangaluru',
-                                y: 84
-                            },
-                            {
-                                x: 'Pune',
-                                y: 31
-                            },
-                            {
-                                x: 'Chennai',
-                                y: 70
-                            },
-                            {
-                                x: 'Jaipur',
-                                y: 30
-                            },
-                            {
-                                x: 'Surat',
-                                y: 44
-                            },
-                            {
-                                x: 'Hyderabad',
-                                y: 68
-                            },
-                            {
-                                x: 'Lucknow',
-                                y: 28
-                            },
-                            {
-                                x: 'Indore',
-                                y: 19
-                            },
-                            {
-                                x: 'Kanpur',
-                                y: 29
-                            }
-                        ]
+                        data: SquareChartArr
                     }
                 ],
                 legend: {
