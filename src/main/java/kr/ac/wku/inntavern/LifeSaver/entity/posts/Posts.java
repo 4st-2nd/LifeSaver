@@ -5,6 +5,7 @@ import kr.ac.wku.inntavern.LifeSaver.entity.comments.Comments;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Posts{
 
     private long views;
     //미사용
-    private LocalDateTime createTime;
+    private LocalDate createTime;
 
     private String tags;
 
@@ -37,7 +38,7 @@ public class Posts{
     public Posts(){
 
     }
-    public Posts(String title, String contents, int views, LocalDateTime createTime) {
+    public Posts(String title, String contents, int views, LocalDate createTime) {
         this.title = title;
         this.contents = contents;
         this.views = views;

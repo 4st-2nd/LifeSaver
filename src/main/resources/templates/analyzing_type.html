@@ -29,36 +29,20 @@
             <strong>산업 유형에 따른 사고 예방법 교육자료</strong>
         </div>
         <div class="card-body">
-            <ul class="grid w-full gap-6 md:grid-cols-3">
-                <li>
-                    <input type="checkbox" id="react-option" value="" class="hidden peer" required="">
-                    <label for="react-option" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <div class="block">
-                            <div class="w-full text-lg font-semibold">교육자료 #1</div>
-                            <div class="w-full text-sm">A JavaScript library for building user interfaces.</div>
+            <div th:each="posts : ${postsList}">
+                <!-- message -->
+                <a th:href="@{|/posts/edu/list/${posts.id}|}">
+                    <div class="flex grid grid-cols-6 gap-4 items-center shadow-xs transition-all duration-300 ease-in-out p-5 hover:shadow-md">
+                        <div class=" w-10 h-10 overflow-hidden rounded-md">
+                            <img class="img-responsive" src="/dist/img/logo.png" alt="">
                         </div>
-                    </label>
-                </li>
-                <li>
-                    <input type="checkbox" id="react-option" value="" class="hidden peer" required="">
-                    <label for="react-option" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <div class="block">
-                            <div class="w-full text-lg font-semibold">교육자료 #1</div>
-                            <div class="w-full text-sm">A JavaScript library for building user interfaces.</div>
-                        </div>
-                    </label>
-                </li>
-                <li>
-                    <input type="checkbox" id="react-option" value="" class="hidden peer" required="">
-                    <label for="react-option" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <div class="block">
-                            <div class="w-full text-lg font-semibold">교육자료 #1</div>
-                            <div class="w-full text-sm">A JavaScript library for building user interfaces.</div>
-                        </div>
-                    </label>
-                </li>
-            </ul>
-
+                        <h1 class="ml-3" th:text="${posts.title}"></h1>
+                        <p class="ml-6 col-span-3 text-xs truncate overflow-hidden whitespace-nowrap" th:text="${posts.contents}"></p>
+                        <p class="font-bold col-span-1 text-gray-900 overflow-hidden" th:text="${posts.createTime}"></p>
+                    </div>
+                </a>
+                <!-- message -->
+            </div>
         </div>
     </div>
     <div class="row-span-2 bg-blue-400">

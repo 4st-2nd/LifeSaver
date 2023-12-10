@@ -8,6 +8,7 @@ import org.springframework.boot.context.config.ConfigDataLocationNotFoundExcepti
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,5 +28,11 @@ public class PostsService {
         }else{
             throw new DataNotFoundException("게시글을 찾을 수 없습니다.");
         }
+    }
+
+    public List<Posts> getRandomPosts(int count) {
+        List<Posts> allPosts = postsRepository.findAll();
+        Collections.shuffle(allPosts);
+        return allPosts.subList(0, Math.min(count, allPosts.size()));
     }
 }

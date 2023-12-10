@@ -365,7 +365,7 @@
 
 
     <!-- strat wrapper -->
-    <div class="h-screen flex flex-row flex-wrap">
+    <div class="h-screen flex flex-row flex-no-wrap relative whitespace-nowrap overflow-x-auto">
 
         <!-- start sidebar -->
         <div id="sideBar"
@@ -406,7 +406,7 @@
                 </a>
                 <!-- end link -->
                 <!-- link -->
-                <a th:href="@{posts/edu/list}"
+                <a th:href="@{/posts/edu/list}"
                    class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
                     <i class="fad fa-envelope-open-text text-xs mr-2"></i>
                     재해 예방법
@@ -417,4 +417,5 @@
 
         </div>
         <!-- end sidbar -->
+
 </html>
