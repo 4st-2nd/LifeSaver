@@ -38,10 +38,11 @@ public class Posts{
     public Posts(){
 
     }
-    public Posts(String title, String contents, int views, LocalDate createTime) {
+    public Posts(String title, String contents, String tags, int views, LocalDate createTime) {
         this.title = title;
         this.contents = contents;
         this.views = views;
+        this.tags = tags;
         this.createTime = createTime;
     }
 }

@@ -28,9 +28,9 @@
         <div class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
           <div class="lg:pr-4">
             <div class="lg:max-w-lg" th:if="${posts != null}">
-              <p class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</p><!--아마 카테고리가 될듯-->
+              <p class="text-base font-semibold leading-7 text-indigo-600" th:text="${posts.tags}"></p><!--아마 카테고리가 될듯-->
               <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl" th:text="${posts.title}"></h1>
-              <p class="context mt-6" th:utext="${@commonUtil.markdown(posts.contents)}"></p>
+              <div class="card-text" th:utext="${@commonUtil.markdown(posts.contents)}"></div>
             </div>
           </div>
         </div>

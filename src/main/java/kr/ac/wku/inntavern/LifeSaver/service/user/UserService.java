@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,27 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(password));
         this.userRepository.save(user);
         return user;
+    }
+
+    public LifeSaverUser updateUserInfos(String username, String real_name, String email, String phone_number, String address) throws Exception{
+        LifeSaverUser user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new Exception("사용자가 존재하지 않습니다."));
+        user.setReal_name(real_name);
+        user.setEmail(email);
+        user.setAddress(address);
+        user.setPhone_number(phone_number);
+        this.userRepository.save(user);
+        return user;
+    }
+
+    public LifeSaverUser getCurrentUser(String username) throws UsernameNotFoundException {
+        Optional<LifeSaverUser> optionalUser = userRepository.findByUsername(username);
+
+        if (optionalUser.isPresent()) {
+            return optionalUser.get();
+        } else {
+            throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
+        }
     }
 
 

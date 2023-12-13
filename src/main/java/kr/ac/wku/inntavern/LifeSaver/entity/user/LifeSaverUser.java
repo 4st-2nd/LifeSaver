@@ -15,9 +15,10 @@ public class LifeSaverUser {
     @Column(unique = true)
     private String username;//로그인시 사용되는 아이디
 
+    private String real_name;
+
     private String password;
 
-    private String real_name;
 
     private String phone_number;//사용중인 전화번호
 

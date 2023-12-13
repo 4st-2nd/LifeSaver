@@ -7,14 +7,14 @@
       layout:fragment="Content"
 >
 <head>
-    <title> 혼자서 다했다! </title>
+    <title> 혼자서 북치고 장구치고 다했다! </title>
     <th:block layout:fragment="script">
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     </th:block>
 
 </head>
-<div class="grid grid-cols-3 grid-flow-col p-6 gap-4 flex-auto">
+<div class="grid grid-cols-3 lg:grid-cols-1 p-6 gap-4 flex-auto">
     <div class="card col-span-2 row-span-1">
         <div class="card-header">
             <strong>산업 유형에 따른 사고</strong>
@@ -24,31 +24,33 @@
             </div>
         </div>
     </div>
-    <div class="card col-span-2 row-span-1 bg-blue-100">
+    <div class="col-span-1 row-span-2 bg-yellow-400">
+        <div id="SquareChart" class="m-2">
+        </div>
+    </div>
+    <div class="card col-span-2 row-span-1 bg-yellow-100">
         <div class="card-header">
             <strong>산업 유형에 따른 사고 예방법 교육자료</strong>
         </div>
         <div class="card-body">
-            <div th:each="posts : ${postsList}">
-                <!-- message -->
-                <a th:href="@{|/posts/edu/list/${posts.id}|}">
-                    <div class="flex grid grid-cols-6 gap-4 items-center shadow-xs transition-all duration-300 ease-in-out p-5 hover:shadow-md">
-                        <div class=" w-10 h-10 overflow-hidden rounded-md">
-                            <img class="img-responsive" src="/dist/img/logo.png" alt="">
+            <ul class="grid w-full gap-2">
+                <li class="mx-2 mt-2" th:each="posts : ${postsList}">
+                    <div class="card dropdown-buttonss flex flex-col items-center justify-between w-full p-5 text-gray-500 bg-white border-1 border-gray-200 cursor-pointer hover:text-gray-900 hover:bg-gray-50">
+                        <h1 class="w-full text-lg font-semibold" th:text="${posts.title}">교육자료 #1</h1>
+                        <div class="dropdown-contentss hidden w-full text-sm">
+                            <div class="card-body">
+                                <div class="w-full text-sm" th:utext="${@commonUtil.markdown(posts.contents)}">A JavaScript library for building user interfaces.</div>
+                            </div>
+                            <div class="card-footer flex justify-end w-full">
+                                <a th:href="@{|/posts/edu/list/${posts.id}|}"><button class="confirm-btn p-2 mt-2 text-white bg-blue-500 rounded hover:bg-blue-700">링크로 이동</button></a>
+                            </div>
                         </div>
-                        <h1 class="ml-3" th:text="${posts.title}"></h1>
-                        <p class="ml-6 col-span-3 text-xs truncate overflow-hidden whitespace-nowrap" th:text="${posts.contents}"></p>
-                        <p class="font-bold col-span-1 text-gray-900 overflow-hidden" th:text="${posts.createTime}"></p>
                     </div>
-                </a>
-                <!-- message -->
-            </div>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="row-span-2 bg-blue-400">
-        <div id="SquareChart">
-        </div>
-    </div>
+
 </div>
 <th:block layout:fragment="script">
     <script>
@@ -56,23 +58,53 @@
         let countInjury = new Array(100).fill(0);
         let countDie = new Array(100).fill(0);
         let categoryArr = new Array();
+        let categoryForBarChart = new Array();
         let data;
+        let filteredCountInjury = new Array(0);
+        let filteredCountDie = new Array(0);
+
+        let category = {
+            6: "6-금속 광업",
+            7: "7-비금속광물 광업",
+            20: "20-화학 물질 및 화학제품 제조업",
+            21: "21-의료용 물질 및 의약품 제조업",
+            31: "31-기타 운송장비 제조업",
+            40: "40-전기,가스, 증기",
+            41: "41-건설업"
+        }
+
         window.onload = function getDataAndRender(){
             $.get("dist/locationInfo.json", function(data) {
                 let positions = data.positions;
                 for (let item of positions) {
-                    categoryArr.push(item.industrytype)
+                    categoryArr.push(item.industrytype);
                     countDie[item.industrytype] += item.die;
                     countInjury[item.industrytype] += item.injury;
                 }
 
 
                 let temp_categoryArr = new Set(categoryArr);
+                console.log(categoryArr)
                 categoryArr = [...temp_categoryArr];
+                categoryArr = categoryArr.sort((a,b)=>a-b);
+                console.log(categoryArr)
 
-                for(let category_item of temp_categoryArr){
-                    SquareChartArr.push({x:category_item,y:countDie[category_item]+countInjury[category_item]})
+                for(let category_item of categoryArr){
+                    categoryForBarChart.push(category[category_item]);
+                    SquareChartArr.push({x:category[category_item],y:countDie[category_item]+countInjury[category_item]})
+                    console.log(category_item + " = " + countDie[category_item] + " : " + countInjury[category_item]+"\n");
                 }
+
+                for(let i = 0; i < countInjury.length; i++) {
+                    if(countInjury[i] + countDie[i] > 0) {
+                        filteredCountInjury.push(countInjury[i]);
+                        filteredCountDie.push(countDie[i]);
+                    }
+                }
+
+                console.log(filteredCountInjury + "\n" + filteredCountDie);
+                console.log(SquareChartArr);
+                console.log(categoryForBarChart);
 
                 displayChart();
                 displaySquareChart()
@@ -94,10 +126,10 @@
                 },
                 series: [{
                     name : '사망',
-                    data: [countDie[35], countDie[41]]
+                    data: filteredCountDie
                 }, {
                     name : '부상',
-                    data : [countInjury[35], countInjury[41]]
+                    data : filteredCountInjury
                 }],
                 plotOptions: {
                     bar: {
@@ -114,7 +146,7 @@
                     },
                 },
                 xaxis: {
-                    categories: categoryArr
+                    categories: categoryForBarChart
                 },
                 legend: {
                     position: 'right',
@@ -144,7 +176,8 @@
                     height: '100%'
                 },
                 title: {
-                    align: 'center'
+                    text:"유형별 트리맵",
+                    align: 'left'
                 },
                 colors: [
                     '#3B93A5',
@@ -162,6 +195,9 @@
                 ],
                 plotOptions: {
                     treemap: {
+                        enableShades:true,
+                        shadeIntensity: 0.5,
+                        reverseNegativeShade: true,
                         distributed: true,
                         enableShades: false
                     }
@@ -171,6 +207,11 @@
             var squarechart = new ApexCharts(document.querySelector("#SquareChart"), options);
             squarechart.render();
         }
+        $(document).ready(function(){
+            $('.dropdown-buttonss').click(function(){
+                $(this).find('.dropdown-contentss').toggleClass('hidden');
+            });
+        });
     </script>
 </th:block>
 </html>

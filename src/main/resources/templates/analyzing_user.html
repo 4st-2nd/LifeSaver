@@ -31,50 +31,54 @@
     <div class="flex flex-row flex-wrap p-6 relative whitespace-nowrap overflow-x-auto h-screen" ><!--sec:authorize="isAuthenticated()"-->
         <div class="bg-gray-100 grid grid-rows-2 grid-cols-4 gap-2 flex-auto">
             <!-- Thumbnail -->
-            <div class="row-span-1 col-span-1 aspect-w-16 aspect-h-9">
+            <div class="row-span-1 col-auto lg:col-span-0 aspect-w-16 aspect-h-9">
                 <img class="img-responsive w-full h-full object-cover" src="/dist/img/user3.jpg" alt="">
             </div>
             <!-- UserInfo -->
-            <div class="bg-gray-400 row-span-1 col-span-1">
-                <ul class="col-span-1">
-                    <li class="pt-2 px-2">
-                        <div class="block items-center justify-between w-full p-5 text-black-500 bg-white border-1 border-gray-200 rounded-lg dark:hover:text-gray-300 dark:border-gray-700">
-                            <div class="w-full text-lg font-semibold">이름</div>
-                            <div class="w-full text-sm">A JavaScript library for building user interfaces.</div>
-                        </div>
-                    </li>
-                    <li  class="pt-2 px-2">
-                        <div class="block items-center justify-between w-full p-5 text-black-500 bg-white border-1 border-gray-200 rounded-lg dark:hover:text-gray-300 dark:border-gray-700">
-                            <div class="w-full text-lg font-semibold">이메일</div>
-                            <div class="w-full text-sm" >A JavaScript library for building user interfaces.</div>
-                        </div>
-                    </li>
-                    <li  class="pt-2 px-2">
-                        <div class="block items-center justify-between w-full p-5 text-black-500 bg-white border-1 border-gray-200 rounded-lg dark:hover:text-gray-300 dark:border-gray-700">
-                            <div class="w-full text-lg font-semibold">주소</div>
-                            <div class="w-full text-sm">A JavaScript library for building user interfaces.</div>
-                        </div>
-                    </li>
-                    <li  class="pt-2 px-2">
-                        <div class="block items-center justify-between w-full p-5 text-black-500 bg-white border-1 border-gray-200 rounded-lg dark:hover:text-gray-300 dark:border-gray-700">
-                            <div class="w-full text-lg font-semibold">전화번호</div>
-                            <div class="w-full text-sm">A JavaScript library for building user interfaces.</div>
-                        </div>
-                    </li>
-                    <li  class="py-2 px-2">
-                        <div class="block items-center justify-between w-full p-5 text-black-500 bg-white border-1 border-gray-200 rounded-lg  cursor-pointer dark:hover:text-gray-300 dark:border-gray-700">
-                            <div class="w-full text-lg font-semibold">뱃지 리스트</div>
-                            <div class="w-full text-sm">A JavaScript library for building user interfaces.</div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <form th:action="@{/updateInfo}" method="post">
+                <div class="bg-gray-400 row-span-1 col-span-1">
+                    <ul class="col-span-1">
+                        <li class="pt-2 px-2">
+                            <div class="block items-center justify-between w-full p-5 text-black-500 bg-white border-1 border-gray-200 rounded-lg dark:hover:text-gray-300 dark:border-gray-700">
+                                <div class="w-full text-lg font-semibold">이름</div>
+                                <input type="text" class="w-full text-sm border-2 border-yellow-500" name="real_name" th:value="${real_name}">
+                            </div>
+                        </li>
+                        <li  class="pt-2 px-2">
+                            <div class="block items-center justify-between w-full p-5 text-black-500 bg-white border-1 border-gray-200 rounded-lg dark:hover:text-gray-300 dark:border-gray-700">
+                                <div class="w-full text-lg font-semibold">이메일</div>
+                                <input type="email" class="w-full text-sm border-2 border-yellow-500" name="email"  th:value="${email}">
+                            </div>
+                        </li>
+                        <li  class="pt-2 px-2">
+                            <div class="block items-center justify-between w-full p-5 text-black-500 bg-white border-1 border-gray-200 rounded-lg dark:hover:text-gray-300 dark:border-gray-700">
+                                <div class="w-full text-lg font-semibold">주소</div>
+                                <input type="text" class="w-full text-sm border-2 border-yellow-500" name="address" th:value="${address}">
+                            </div>
+                        </li>
+                        <li  class="pt-2 px-2">
+                            <div class="block items-center justify-between w-full p-5 text-black-500 bg-white border-1 border-gray-200 rounded-lg dark:hover:text-gray-300 dark:border-gray-700">
+                                <div class="w-full text-lg font-semibold">전화번호</div>
+                                <input type="tel" class="w-full text-sm border-2 border-yellow-500" name="phone_number" th:value="${phone_number}">
+                            </div>
+                        </li>
+                        <li  class="py-2 px-2">
+                            <div class="block items-center justify-between w-full p-5 text-black-500 bg-white border-1 border-gray-200 rounded-lg  cursor-pointer dark:hover:text-gray-300 dark:border-gray-700">
+                                <div class="w-full text-lg font-semibold">뱃지 리스트</div>
+                                <div class="w-full text-sm"> 구현중 </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+                <input  type="submit" class="w-full confirm-btns p-2 mt-2 text-white bg-blue-500 rounded hover:bg-blue-700" value="변경"/>
+            </form>
             <div class="row-span-2 col-span-2 bg-gray-400 ">
                 <ul class="grid w-full gap-2">
                     <li class="mx-2 mt-2" th:each="posts : ${postsList}">
-                        <div class="card dropdown-button flex flex-col items-center justify-between w-full p-5 text-gray-500 bg-white border-1 border-gray-200 cursor-pointer hover:text-gray-900 hover:bg-gray-50">
+                        <div class="card dropdown-buttonss flex flex-col items-center justify-between w-full p-5 text-gray-500 bg-white border-1 border-gray-200 cursor-pointer hover:text-gray-900 hover:bg-gray-50">
                             <h1 class="w-full text-lg font-semibold" th:text="${posts.title}">교육자료 #1</h1>
-                                <div class="dropdown-content hidden w-full text-sm">
+                                <div class="dropdown-contentss hidden w-full text-sm">
                                     <div class="card-body">
                                         <div class="w-full text-sm" th:utext="${@commonUtil.markdown(posts.contents)}">A JavaScript library for building user interfaces.</div>
                                     </div>
@@ -225,17 +229,17 @@
         }
 
         $(document).ready(function(){
-            $('.dropdown-button').click(function(){
-                $(this).find('.dropdown-content').toggleClass('hidden');
+            $('.dropdown-buttonss').click(function(){
+                $(this).find('.dropdown-contentss').toggleClass('hidden');
             });
 
             $('.confirm-btn').click(function(e){
                 e.stopPropagation(); // 부모 요소의 click 이벤트를 막습니다.
-                var dropdownButton = $(this).closest('.dropdown-button');
-                if (dropdownButton.css('background-color') == 'rgb(255, 191, 0)') {
-                    dropdownButton.css('background-color', ''); // 원래의 배경색으로 변경
+                var dropdownButtonss = $(this).closest('.dropdown-buttonss');
+                if (dropdownButtonss.css('background-color') == 'rgb(255, 191, 0)') {
+                    dropdownButtonss.css('background-color', ''); // 원래의 배경색으로 변경
                 } else { // 그 외의 경우
-                    dropdownButton.css('background-color', 'rgb(255, 191, 0)'); //#FFBF00
+                    dropdownButtonss.css('background-color', 'rgb(255, 191, 0)'); //#FFBF00
                 }
             });
         });
